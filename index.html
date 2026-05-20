@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Álbum UWCL - Fiesta Final</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-900 text-white p-5">
+
+    <header class="text-center mb-8">
+        <h1 class="text-4xl font-bold text-cyan-400">Álbum UWCL 2026</h1>
+        <button onclick="obtenerStickers()" class="mt-4 bg-pink-600 px-6 py-2 rounded-full font-bold hover:scale-105 transition">
+            🎁 Obtener 5 Stickers Aleatorios
+        </button>
+    </header>
+
+    <!-- Navegación de Equipos -->
+    <nav class="flex justify-center gap-4 mb-10">
+        <button onclick="renderizarEquipo('arsenal')" class="bg-gray-800 p-3 rounded">Arsenal</button>
+        <button onclick="renderizarEquipo('barcelona')" class="bg-gray-800 p-3 rounded">Barcelona</button>
+        <button onclick="renderizarEquipo('chelsea')" class="bg-gray-800 p-3 rounded">Chelsea</button>
+        <button onclick="renderizarEquipo('lyon')" class="bg-gray-800 p-3 rounded">O. Lyon</button>
+    </nav>
+
+    <!-- Grid de Jugadoras -->
+    <div id="grid-jugadoras" class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto"></div>
+
+    <script>
+        // Aquí insertas tu mapeo de datos
+        const db = {
+        arsenal: {
+            nombre: "Arsenal WFC",
+            jugadoras: [
+                { id: "russo", nombre: "Alessia Russo", posicion: "Delantera", img: "img/aitana.jpg" },
+                { id: "caldentey", nombre: "Mariona Caldentey", posicion: "Delantera", img: "img/caldentey.png" },
+                // ... agregar las 12 jugadoras aquí
+            ]
+        },
+        barcelona: { /* Estructura idéntica */ },
+        chelsea: { /* Estructura idéntica */ },
+        lyon: { /* Estructura idéntica */ }
+    };
+
+        function renderizarEquipo(equipoKey) {
+            const container = document.getElementById('grid-jugadoras');
+            container.innerHTML = '';
+            const equipo = db[equipoKey];
+
+            equipo.jugadoras.forEach(jugadora => {
+                container.innerHTML += `
+                    <div class="bg-gray-800 p-4 rounded-xl border border-gray-700 hover:border-cyan-500 transition">
+                        <img src="${jugadora.img}" alt="${jugadora.nombre}" class="w-full h-40 object-cover rounded-lg mb-2">
+                        <h3 class="font-bold">${jugadora.nombre}</h3>
+                        <p class="text-xs text-gray-400">${jugadora.posicion}</p>
+                    </div>
+                `;
+            });
+        }
+
+        function obtenerStickers() {
+            // Lógica para mostrar 5 aleatorios de todo el objeto db
+            alert("¡Stickers generados!");
+        }
+    </script>
+</body>
+</html>
