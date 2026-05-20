@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Álbum UWCL 2026 - Premium</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Teko:wght@400;600&family=Inter:wght@400;600;800&display=swap');
+        :root { --dark: #070b19; --cyan: #00d2ff; --magenta: #e8006e; }
+        body { font-family: 'Inter', sans-serif; background: var(--dark); color: white; background-attachment: fixed; }
+        .teko-font { font-family: 'Teko', sans-serif; }
+        .card-inner { transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1); transform-style: preserve-3d; }
+        .card-container.collected .card-inner:hover { transform: translateY(-5px) scale(1.02); box-shadow: 0 0 20px rgba(0, 210, 255, 0.3); }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.05); }
+    </style>
+</head>
+<body class="min-h-screen pb-20">
+
+    <header class="glass sticky top-0 z-30 p-4 border-b border-white/10">
+        <div class="max-w-4xl mx-auto flex justify-between items-center">
+            <h1 class="text-2xl teko-font tracking-widest"><span class="text-white">ÁLBUM</span> <span class="text-[var(--cyan)]">UWCL</span></h1>
+            <button onclick="openPack()" class="bg-gradient-to-r from-[var(--magenta)] to-pink-600 px-4 py-2 rounded-full font-bold teko-font text-lg shadow-lg hover:scale-105 transition">
+                <i class="fas fa-box-open mr-2"></i> <span id="pack-count">0</span>
+            </button>
+        </div>
+    </header>
+
+    <nav class="max-w-4xl mx-auto py-6 px-4 flex items-center justify-between">
+        <button onclick="prevTeam()" class="bg-white/10 hover:bg-white/20 p-3 rounded-full transition w-12 h-12">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        
+        <div class="text-center">
+            <h2 id="team-name" class="teko-font text-4xl uppercase tracking-widest text-white leading-none">EQUIPO</h2>
+            <p id="team-counter" class="text-[var(--cyan)] text-xs font-bold uppercase tracking-widest mt-1">0/7 Coleccionadas</p>
+        </div>
+
+        <button onclick="nextTeam()" class="bg-white/10 hover:bg-white/20 p-3 rounded-full transition w-12 h-12">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+    </nav>
+
+    <main class="max-w-4xl mx-auto p-4">
+        <div id="album-grid" class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            </div>
+    </main>
+
+    <script>
+        // Configuración inicial
+        const CARDS_PER_TEAM = 7;
+        let collection = {}; 
+        let packsAvailable = 5;
+        let currentTeamIndex = 0;
+
+        const teamsData = [
+            { id: 'ARS', name: "Arsenal WFC", c1: "#ef0107", c2: "#ffffff", border: "#9c824a" },
+            { id: 'FCB', name: "FC Barcelona", c1: "#004d98", c2: "#a50044", border: "#edbb00" },
+            { id: 'CHE', name: "Chelsea FC", c1: "#034694", c2: "#001489", border: "#ffffff" },
+            { id: 'LYON', name: "Olympique Lyon", c1: "#ffffff", c2: "#da0027", border: "#0055a4" }
+        ];
+
+        // Generar DB simulada
+        let playersDB = [];
+        teamsData.forEach((t, tIdx) => {
+            for(let i=0; i<CARDS_PER_TEAM; i++) {
+                playersDB.push({ id: (tIdx*CARDS_PER_TEAM) + i + 1, name: `Jugadora ${t.id} ${i+1}`, teamObj: t, photo: `https://i.pravatar.cc/300?u=${(tIdx*CARDS_PER_TEAM)+i}` });
+            }
+        });
+
+        function renderCurrentPage() {
+            const team = teamsData[currentTeamIndex];
+            document.getElementById('team-name').innerText = team.name;
+            const teamPlayers = playersDB.filter(p => p.teamObj.id === team.id);
+            const grid = document.getElementById('album-grid');
+            
+            grid.innerHTML = '';
+            teamPlayers.forEach(p => {
+                const isCollected = !!collection[p.id];
+                grid.innerHTML += `
+                    <div class="card-container ${isCollected ? 'collected' : ''}">
+                        <div class="card-inner w-full aspect-[2.5/3.5] rounded-xl overflow-hidden border-2 ${isCollected ? 'border-[var(--cyan)] bg-slate-800' : 'border-dashed border-gray-600 bg-gray-900'}">
+                            ${isCollected ? `
+                                <img src="${p.photo}" class="w-full h-full object-cover">
+                                <div class="absolute bottom-0 w-full bg-black/60 p-2 text-center text-xs teko-font">${p.name}</div>
+                            ` : `
+                                <div class="flex items-center justify-center h-full text-gray-600 font-bold">#${p.id}</div>
+                            `}
+                        </div>
+                    </div>
+                `;
+            });
+            document.getElementById('team-counter').innerText = `${teamPlayers.filter(p => collection[p.id]).length}/${CARDS_PER_TEAM} Coleccionadas`;
+        }
+
+        function nextTeam() { if(currentTeamIndex < teamsData.length - 1) { currentTeamIndex++; renderCurrentPage(); } }
+        function prevTeam() { if(currentTeamIndex > 0) { currentTeamIndex--; renderCurrentPage(); } }
+        function openPack() { packsAvailable--; document.getElementById('pack-count').innerText = packsAvailable; alert("¡Sobre abierto!"); renderCurrentPage(); }
+
+        window.onload = renderCurrentPage;
+    </script>
+</body>
+</html>
