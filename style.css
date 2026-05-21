@@ -1,0 +1,488 @@
+@import url('https://fonts.googleapis.com/css2?family=Teko:wght@400;600&family=Inter:wght@400;600;800&display=swap');
+
+:root {
+    --uwcl-dark: #070b19;
+    --uwcl-blue: #0b1a4a;
+    --uwcl-cyan: #00d2ff;
+    --uwcl-magenta: #e8006e;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+
+    font-family: 'Inter', sans-serif;
+
+    color: white;
+
+    min-height: 100vh;
+
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+
+    background-color: var(--uwcl-dark);
+
+}
+
+/* Imagen optimizada para cualquier resolución */
+.player-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Clave: recorta manteniendo proporción */
+    object-position: top; /* Clave: enfoca la cara/parte superior */
+}
+
+/* Contenedor de carta */
+.card-container { 
+    aspect-ratio: 2.5/3.5; width: 100%; max-width: 180px;
+}
+
+/* Silueta de carta vacía */
+.card-back {
+    background: #111827;
+    border: 2px dashed #374151;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #4b5563;
+    height: 100%;
+    border-radius: 12px;
+}
+
+/* Estilo de carta completa */
+.card-front {
+    border: 2px solid;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #1f2937;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.glass-panel {
+
+    background: rgba(255,255,255,0.05);
+
+    backdrop-filter: blur(10px);
+
+    border: 1px solid rgba(255,255,255,0.1);
+
+}
+
+.header {
+
+    padding: 20px;
+
+}
+
+.header-content {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+}
+
+.title {
+
+    font-family: 'Teko', sans-serif;
+
+    font-size: 42px;
+
+    letter-spacing: 2px;
+
+}
+
+.cyan {
+    color: var(--uwcl-cyan);
+}
+
+.pink {
+    color: var(--uwcl-magenta);
+}
+
+.header-actions {
+
+    display: flex;
+
+    gap: 10px;
+
+}
+
+.icon-btn,
+.open-btn {
+
+    border: none;
+
+    cursor: pointer;
+
+    border-radius: 12px;
+
+}
+
+.icon-btn {
+
+    width: 45px;
+    height: 45px;
+
+    background: #1f2937;
+
+    color: white;
+
+}
+
+.open-btn {
+
+    padding: 12px 20px;
+
+    background: linear-gradient(
+        90deg,
+        var(--uwcl-magenta),
+        #ff0080
+    );
+
+    color: white;
+
+    font-weight: bold;
+
+}
+
+.team-nav {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 20px;
+
+    background: rgba(0,0,0,0.4);
+
+}
+
+.team-nav button {
+
+    background: transparent;
+
+    border: none;
+
+    color: white;
+
+    font-size: 24px;
+
+    cursor: pointer;
+
+}
+
+.team-info {
+
+    text-align: center;
+
+}
+
+.team-info h2 {
+
+    font-size: 32px;
+
+    font-family: 'Teko', sans-serif;
+
+}
+
+.album {
+
+    display: grid;
+
+    grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+
+    gap: 24px;
+
+    padding: 30px;
+
+}
+
+.card {
+
+    position: relative;
+
+    border-radius: 18px;
+
+    overflow: hidden;
+
+    background: rgba(0,0,0,0.6);
+
+    border: 2px solid rgba(255,255,255,0.1);
+
+    transition: .3s;
+
+}
+
+.card:hover {
+
+    transform: translateY(-5px);
+
+}
+
+.card-image {
+
+    height: 320px;
+
+    overflow: hidden;
+
+}
+
+.card-image img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+}
+
+.card-info {
+
+    padding: 16px;
+
+    text-align: center;
+
+}
+
+.card-info h3 {
+
+    font-family: 'Teko', sans-serif;
+
+    font-size: 28px;
+
+}
+
+.card-info span {
+
+    opacity: .8;
+
+}
+
+.repeat-badge {
+
+    position: absolute;
+
+    top: 12px;
+    right: 12px;
+
+    background: var(--uwcl-magenta);
+
+    width: 40px;
+    height: 40px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-weight: bold;
+
+    z-index: 10;
+
+}
+
+.modal {
+
+    position: fixed;
+
+    inset: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    z-index: 999;
+
+}
+
+.modal-overlay {
+
+    position: absolute;
+
+    inset: 0;
+
+    background: rgba(0,0,0,0.8);
+
+}
+
+.modal-content,
+.exchange-box {
+
+    position: relative;
+
+    z-index: 10;
+
+    background: #111827;
+
+    padding: 30px;
+
+    border-radius: 20px;
+
+    width: 90%;
+
+    max-width: 1000px;
+
+}
+
+.modal-content h2,
+.exchange-box h2 {
+
+    text-align: center;
+
+    font-size: 42px;
+
+    margin-bottom: 30px;
+
+    font-family: 'Teko', sans-serif;
+
+}
+
+.new-cards {
+
+    display: grid;
+
+    grid-template-columns: repeat(auto-fit,minmax(140px,1fr));
+
+    gap: 20px;
+
+}
+
+.mini-card {
+
+    background: #1f2937;
+
+    border-radius: 12px;
+
+    overflow: hidden;
+
+    text-align: center;
+
+    padding-bottom: 10px;
+
+}
+
+.mini-card img {
+
+    width: 100%;
+
+    height: 180px;
+
+    object-fit: cover;
+
+}
+
+.close-btn {
+
+    margin-top: 30px;
+
+    width: 100%;
+
+    padding: 16px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: white;
+
+    color: black;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+}
+
+.exchange-import {
+
+    display: flex;
+
+    gap: 10px;
+
+    margin-bottom: 20px;
+
+}
+
+.exchange-import input {
+
+    flex: 1;
+
+    padding: 12px;
+
+    border-radius: 10px;
+
+    border: none;
+
+}
+
+.exchange-import button {
+
+    padding: 12px 18px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: var(--uwcl-cyan);
+
+    color: black;
+
+    font-weight: bold;
+
+}
+
+.duplicate-item {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    background: rgba(255,255,255,0.05);
+
+    padding: 14px;
+
+    border-radius: 12px;
+
+    margin-bottom: 12px;
+
+}
+
+.duplicate-item button {
+
+    border: none;
+
+    padding: 8px 12px;
+
+    border-radius: 8px;
+
+    background: var(--uwcl-magenta);
+
+    color: white;
+
+    cursor: pointer;
+
+}
+
+.hidden {
+    display: none;
+}
