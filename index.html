@@ -22,7 +22,7 @@
         <div class="max-w-4xl mx-auto flex justify-between items-center">
             <h1 class="text-2xl teko-font tracking-widest"><span class="text-white">ÁLBUM</span> <span class="text-[var(--cyan)]">UWCL</span></h1>
             <button onclick="openPack()" class="bg-gradient-to-r from-[var(--magenta)] to-pink-600 px-4 py-2 rounded-full font-bold teko-font text-lg shadow-lg hover:scale-105 transition">
-                <i class="fas fa-box-open mr-2"></i> <span id="pack-count">0</span>
+                <i class="fas fa-box-open mr-2"></i> <span id="pack-count">5</span>
             </button>
         </div>
     </header>
@@ -54,6 +54,7 @@
         let packsAvailable = 5;
         let currentTeamIndex = 0;
 
+        // Equipos
         const teamsData = [
             { id: 'ARS', name: "Arsenal WFC", c1: "#ef0107", c2: "#ffffff", border: "#9c824a" },
             { id: 'FCB', name: "FC Barcelona", c1: "#004d98", c2: "#a50044", border: "#edbb00" },
@@ -61,18 +62,47 @@
             { id: 'LYON', name: "Olympique Lyon", c1: "#ffffff", c2: "#da0027", border: "#0055a4" }
         ];
 
-        // Generar DB simulada
-        let playersDB = [];
-        teamsData.forEach((t, tIdx) => {
-            for(let i=0; i<CARDS_PER_TEAM; i++) {
-                playersDB.push({ id: (tIdx*CARDS_PER_TEAM) + i + 1, name: `Jugadora ${t.id} ${i+1}`, teamObj: t, photo: `https://i.pravatar.cc/300?u=${(tIdx*CARDS_PER_TEAM)+i}` });
-            }
-        });
+        // Jugadoras
+        let playersDB = [
+            { id: 1, name: "Beth Mead", team: "ARS", photo: "img/ars_mead.jpeg" },
+            { id: 2, name: "Caitlin Foord", team: "ARS", photo: "img/ars_foord.jpeg" },
+            { id: 3, name: "Steph Catley", team: "ARS", photo: "img/ars_catley.jpeg" },
+            { id: 4, name: "Alessia Russo", team: "ARS", photo: "img/ars_russo.jpeg" },
+            { id: 5, name: "Cloe Lacasse", team: "ARS", photo: "img/ars_lacasse.jpeg" },
+            { id: 6, name: "Lia Walti", team: "ARS", photo: "img/ars_walti.jpeg" },
+            { id: 7, name: "Manu Zinsberger", team: "ARS", photo: "img/ars_zinsberger.jpeg" },
+            { id: 8, name: "Mapi Leon", team: "FCB", photo: "img/bc_leon.jpeg" },
+            { id: 9, name: "Alexia Putellas", team: "FCB", photo: "img/bc_putellas.jpeg" },
+            { id: 10, name: "Aitana Bonmatí", team: "FCB", photo: "img/bc_aitana.jpeg" },
+            { id: 11, name: "Salma Paralluelo", team: "FCB", photo: "img/bc_paralluelo.jpeg" },
+            { id: 12, name: "Cata Coll", team: "FCB", photo: "img/bc_coll.jpg" },
+            { id: 13, name: "Jugadora 13", team: "FCB", photo: "img/lyon_endler.jpeg" },
+            { id: 14, name: "Jugadora 14", team: "FCB", photo: "img/lyon_endler.jpeg" },
+            { id: 15, name: "Jugadora 15", team: "CHE", photo: "img/lyon_endler.jpeg" },
+            { id: 16, name: "Jugadora 16", team: "CHE", photo: "img/lyon_endler.jpeg" },
+            { id: 17, name: "Jugadora 17", team: "CHE", photo: "img/lyon_endler.jpeg" },
+            { id: 18, name: "Jugadora 18", team: "CHE", photo: "img/lyon_endler.jpeg" },
+            { id: 19, name: "Jugadora 19", team: "CHE", photo: "img/lyon_endler.jpeg" },
+            { id: 20, name: "Jugadora 20", team: "CHE", photo: "img/lyon_endler.jpeg" },
+            { id: 21, name: "Jugadora 21", team: "CHE", photo: "img/lyon_endler.jpeg" },
+            { id: 22, name: "Jugadora 22", team: "LYON", photo: "img/lyon_endler.jpeg" },
+            { id: 23, name: "Christiane Endler", team: "LYON", photo: "img/lyon_endler.jpeg" },
+            { id: 24, name: "Tabitha Chawinga", team: "LYON", photo: "img/lyon_chawinga.jpeg" },
+            { id: 25, name: "Kadidiatou Diani", team: "LYON", photo: "img/lyon_diani.jpeg" },
+            { id: 26, name: "Ellie Carpenter", team: "LYON", photo: "img/lyon_carpenter.jpg" },
+            { id: 27, name: "Melchie Dumornay", team: "LYON", photo: "img/lyon_durmonay.jpeg" },
+            { id: 28, name: "Lindsey Horan", team: "LYON", photo: "img/lyon_horan.jpeg" }
+
+        ];
+
+        const allPlayers = [...playersDB ];
+
+        console.log(playersDB);
 
         function renderCurrentPage() {
             const team = teamsData[currentTeamIndex];
             document.getElementById('team-name').innerText = team.name;
-            const teamPlayers = playersDB.filter(p => p.teamObj.id === team.id);
+            const teamPlayers = playersDB.filter(p => p.team === team.id);
             const grid = document.getElementById('album-grid');
             
             grid.innerHTML = '';
@@ -96,7 +126,28 @@
 
         function nextTeam() { if(currentTeamIndex < teamsData.length - 1) { currentTeamIndex++; renderCurrentPage(); } }
         function prevTeam() { if(currentTeamIndex > 0) { currentTeamIndex--; renderCurrentPage(); } }
-        function openPack() { packsAvailable--; document.getElementById('pack-count').innerText = packsAvailable; alert("¡Sobre abierto!"); renderCurrentPage(); }
+        
+        function openPack() { 
+            const newCards = [];
+
+            for(let i = 0; i < 5; i++) {
+                const random =
+                    allPlayers[
+                        Math.floor(Math.random() * allPlayers.length)
+                    ];
+                collection[random.id] =
+                    (collection[random.id] || 0) + 1;
+                newCards.push(random);
+            }
+            localStorage.setItem(
+                "collection",
+                JSON.stringify(collection)
+            );
+            // Resta packs disponibles
+            packsAvailable--; 
+            document.getElementById('pack-count').innerText = packsAvailable;
+            renderCurrentPage(); 
+        }
 
         window.onload = renderCurrentPage;
     </script>
