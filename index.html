@@ -64,40 +64,38 @@
 
         // Jugadoras
         let playersDB = [
-            { id: 1, name: "Beth Mead", team: "ARS", photo: "img/ars_mead.jpeg" },
-            { id: 2, name: "Caitlin Foord", team: "ARS", photo: "img/ars_foord.jpeg" },
-            { id: 3, name: "Steph Catley", team: "ARS", photo: "img/ars_catley.jpeg" },
-            { id: 4, name: "Alessia Russo", team: "ARS", photo: "img/ars_russo.jpeg" },
-            { id: 5, name: "Cloe Lacasse", team: "ARS", photo: "img/ars_lacasse.jpeg" },
-            { id: 6, name: "Lia Walti", team: "ARS", photo: "img/ars_walti.jpeg" },
-            { id: 7, name: "Manu Zinsberger", team: "ARS", photo: "img/ars_zinsberger.jpeg" },
-            { id: 8, name: "Mapi Leon", team: "FCB", photo: "img/bc_leon.jpeg" },
-            { id: 9, name: "Alexia Putellas", team: "FCB", photo: "img/bc_putellas.jpeg" },
-            { id: 10, name: "Aitana Bonmatí", team: "FCB", photo: "img/bc_aitana.jpeg" },
-            { id: 11, name: "Salma Paralluelo", team: "FCB", photo: "img/bc_paralluelo.jpeg" },
-            { id: 12, name: "Cata Coll", team: "FCB", photo: "img/bc_coll.jpg" },
-            { id: 13, name: "Jugadora 13", team: "FCB", photo: "img/lyon_endler.jpeg" },
-            { id: 14, name: "Jugadora 14", team: "FCB", photo: "img/lyon_endler.jpeg" },
-            { id: 15, name: "Jugadora 15", team: "CHE", photo: "img/lyon_endler.jpeg" },
-            { id: 16, name: "Jugadora 16", team: "CHE", photo: "img/lyon_endler.jpeg" },
-            { id: 17, name: "Jugadora 17", team: "CHE", photo: "img/lyon_endler.jpeg" },
-            { id: 18, name: "Jugadora 18", team: "CHE", photo: "img/lyon_endler.jpeg" },
-            { id: 19, name: "Jugadora 19", team: "CHE", photo: "img/lyon_endler.jpeg" },
-            { id: 20, name: "Jugadora 20", team: "CHE", photo: "img/lyon_endler.jpeg" },
-            { id: 21, name: "Jugadora 21", team: "CHE", photo: "img/lyon_endler.jpeg" },
-            { id: 22, name: "Jugadora 22", team: "LYON", photo: "img/lyon_endler.jpeg" },
-            { id: 23, name: "Christiane Endler", team: "LYON", photo: "img/lyon_endler.jpeg" },
-            { id: 24, name: "Tabitha Chawinga", team: "LYON", photo: "img/lyon_chawinga.jpeg" },
-            { id: 25, name: "Kadidiatou Diani", team: "LYON", photo: "img/lyon_diani.jpeg" },
-            { id: 26, name: "Ellie Carpenter", team: "LYON", photo: "img/lyon_carpenter.jpg" },
-            { id: 27, name: "Melchie Dumornay", team: "LYON", photo: "img/lyon_durmonay.jpeg" },
-            { id: 28, name: "Lindsey Horan", team: "LYON", photo: "img/lyon_horan.jpeg" }
+            { id: 1, name: "Beth Mead", team: "ARS", position: "Delantera", photo: "img/ars_mead.jpg" },
+            { id: 2, name: "Caitlin Foord", team: "ARS", position: "Delantera", photo: "img/ars_foord.jpg" },
+            { id: 3, name: "Stephanie Catley", team: "ARS", position: "Defensa", photo: "img/ars_catley.jpg" },
+            { id: 4, name: "Alessia Russo", team: "ARS", position: "Delantera", photo: "img/ars_russo.jpeg" },
+            { id: 5, name: "Katie McCabe", team: "ARS", position: "Medio", photo: "img/ars_mccabe.jpg" },
+            { id: 6, name: "Leah Williamson", team: "ARS", position: "Medio", photo: "img/ars_williamson.jpg" },
+            { id: 7, name: "Manu Zinsberger", team: "ARS", position: "Portera", photo: "img/ars_zinsberger.jpg" },
+            { id: 8, name: "Mapi Leon", team: "FCB", position: "Defensa", photo: "img/bc_leon.jpeg" },
+            { id: 9, name: "Alexia Putellas", team: "FCB", position: "Medio", photo: "img/bc_putellas.jpeg" },
+            { id: 10, name: "Aitana Bonmatí", team: "FCB", position: "Medio", photo: "img/bc_aitana.jpg" },
+            { id: 11, name: "Salma Paralluelo", team: "FCB", position: "Delantera", photo: "img/bc_paralluelo.jpeg" },
+            { id: 12, name: "Cata Coll", team: "FCB", position: "Portera", photo: "img/bc_coll.jpeg" },
+            { id: 13, name: "Caroline Graham", team: "FCB", position: "Delantera", photo: "img/bc_hansen.jpeg" },
+            { id: 14, name: "Patricia Guijarro", team: "FCB", position: "Medio", photo: "img/bc_guijarro.jpeg" },
+            { id: 15, name: "Sam Kerr", team: "CHE", position: "Delantera", photo: "img/che_kerr.jpeg" },
+            { id: 16, name: "Keira Walsh", team: "CHE", position: "Medio", photo: "img/che_walsh.jpg" },
+            { id: 17, name: "Niamh Charles", team: "CHE", position: "Delantera", photo: "img/che_charles.jpg" },
+            { id: 18, name: "Veerle Buurman", team: "CHE", position: "Defensa", photo: "img/che_buurman.jpeg" },
+            { id: 19, name: "Hannah Hampton", team: "CHE", position: "Portera", photo: "img/che_hampton.jpeg" },
+            { id: 20, name: "Lauren James", team: "CHE", position: "Delantera", photo: "img/che_james.jpeg" },
+            { id: 21, name: "Alyssa Thompson", team: "CHE", position: "Delantera", photo: "img/che_thompson.jpg" },
+            { id: 22, name: "Ada Hegerberg", team: "LYON", position: "Defensa", photo: "img/lyon_hegerberg.jpeg" },
+            { id: 23, name: "Christiane Endler", team: "LYON", position: "Portera", photo: "img/lyon_endler.jpeg" },
+            { id: 24, name: "Tabitha Chawinga", team: "LYON", position: "Delantera", photo: "img/lyon_chawinga.jpeg" },
+            { id: 25, name: "Kadidiatou Diani", team: "LYON", position: "Delantera", photo: "img/lyon_diani.jpeg" },
+            { id: 26, name: "Ellie Carpenter", team: "LYON", position: "Defensa", photo: "img/lyon_carpenter.jpeg" },
+            { id: 27, name: "Melchie Dumornay", team: "LYON", position: "Medio", photo: "img/lyon_dumornay.jpg" },
+            { id: 28, name: "Lindsey Horan", team: "LYON", position: "Medio", photo: "img/lyon_horan.jpg" }
 
         ];
 
         const allPlayers = [...playersDB ];
-
-        console.log(playersDB);
 
         function renderCurrentPage() {
             const team = teamsData[currentTeamIndex];
@@ -107,13 +105,17 @@
             
             grid.innerHTML = '';
             teamPlayers.forEach(p => {
+                
                 const isCollected = !!collection[p.id];
+
                 grid.innerHTML += `
                     <div class="card-container ${isCollected ? 'collected' : ''}">
                         <div class="card-inner w-full aspect-[2.5/3.5] rounded-xl overflow-hidden border-2 ${isCollected ? 'border-[var(--cyan)] bg-slate-800' : 'border-dashed border-gray-600 bg-gray-900'}">
                             ${isCollected ? `
                                 <img src="${p.photo}" class="w-full h-full object-cover">
-                                <div class="absolute bottom-0 w-full bg-black/60 p-2 text-center text-xs teko-font">${p.name}</div>
+                                <div 
+                                class="absolute bottom-0 w-full bg-black/60 p-2 text-center text-m teko-font">
+                                    ${p.name}</div>
                             ` : `
                                 <div class="flex items-center justify-center h-full text-gray-600 font-bold">#${p.id}</div>
                             `}
@@ -129,7 +131,7 @@
         
         function openPack() { 
             const newCards = [];
-
+            
             for(let i = 0; i < 5; i++) {
                 const random =
                     allPlayers[
@@ -139,6 +141,7 @@
                     (collection[random.id] || 0) + 1;
                 newCards.push(random);
             }
+            console.log("Nuevas cartas obtenidas:", newCards);
             localStorage.setItem(
                 "collection",
                 JSON.stringify(collection)
