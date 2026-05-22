@@ -106,8 +106,7 @@
             grid.innerHTML = '';
             teamPlayers.forEach(p => {
                 
-                // const isCollected = !!collection[p.id];
-                const isCollected = true;
+                const isCollected = !!collection[p.id];
 
                 grid.innerHTML += `
                     <div class="card-container ${isCollected ? 'collected' : ''}">
